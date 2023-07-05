@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrdersController;
+use App\Models\Pizza;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [OrdersController::class, 'index']);
+
+Route::get('/orders', [OrdersController::class, 'orders']);
+
+Route::post('/', [OrdersController::class, 'store']);
+
+Route::get('{slug}', function () {
+    return view('home');
 });
